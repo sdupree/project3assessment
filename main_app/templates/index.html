@@ -16,18 +16,42 @@ label {
   width: 100px;
   text-align: right;
 }
+table {
+  margin: 2rem auto;
+}
+table a {
+  color: red;
+  text-decoration: none;
+}
     </style>
   </head>
   <body>
     <h1>Wacky Widgets</h1>
-    {% for item in item_list %}
-  
-    {% empty %}
+    {% if widgets|length == 0 %}
       <h3>No Widgets Exist</h3>
-    {% endfor %}
+    {% else %}
+      <table class="pure-table pure-table-striped">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for widget in widgets %}
+            <tr>
+              <td>{{ widget.description }}</td>
+              <td>{{ widget.quantity }}</td>
+              <td><a href="/deletewidget/{{ widget.id }}">X</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
     <hr>
     <h4>Add Widget</h4>
-    <form method="post" class="pure-form">
+    <form method="post" class="pure-form" action="/addwidget/">
       {% csrf_token %}
       {{ widget_form.as_p }}
       <button type="submit" class="pure-button">Add Widget</button>
