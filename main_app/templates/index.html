@@ -9,5 +9,11 @@
 </head>
   <body style="text-align: center;">
     <h1>Wacky Widgets</h1>
+    {% for item in item_list %}
+  
+    {% empty %}
+      <h3>No Widgets Exist</h3>
+    {% endfor %}
+    <hr>
   </body>
 </html>
