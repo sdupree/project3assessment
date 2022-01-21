@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>To Do List</title>
+    <title>Wacky Widgets</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-</head>
-  <body style="text-align: center;">
+    <style>
+body {
+  text-align: center;
+  margin: 2rem;
+}
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+    </style>
+  </head>
+  <body>
     <h1>Wacky Widgets</h1>
     {% for item in item_list %}
   
@@ -15,5 +26,11 @@
       <h3>No Widgets Exist</h3>
     {% endfor %}
     <hr>
+    <h4>Add Widget</h4>
+    <form method="post" class="pure-form">
+      {% csrf_token %}
+      {{ widget_form.as_p }}
+      <button type="submit" class="pure-button">Add Widget</button>
+    </form>
   </body>
 </html>
